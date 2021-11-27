@@ -1,0 +1,131 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 0.8 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 522.524, 10 )
+
+[node name="Main" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = -0.729
+anchor_top = -1.481
+anchor_right = 1.75
+anchor_bottom = 2.667
+margin_left = -0.319946
+margin_top = -0.519897
+margin_right = -4586.0
+margin_bottom = -4399.36
+rect_scale = Vector2( 27.6191, 55.3115 )
+color = Color( 0.172549, 0.160784, 0.160784, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gate North" type="Area2D" parent="."]
+position = Vector2( 960, -640 )
+scale = Vector2( 5, 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate North"]
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="Gate South" type="Area2D" parent="."]
+position = Vector2( 960, 1920 )
+scale = Vector2( 5, 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate South"]
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 960, 560 )
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+anchor_left = 0.437
+anchor_top = 1.704
+anchor_right = 0.5
+anchor_bottom = 1.815
+margin_left = 40.96
+margin_top = 39.6799
+margin_right = -40.0
+margin_bottom = -40.2001
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+anchor_left = 0.437
+anchor_top = -0.667
+anchor_right = 0.5
+anchor_bottom = -0.556
+margin_left = 40.96
+margin_top = 40.36
+margin_right = -40.0
+margin_bottom = -39.52
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sector Edge" type="StaticBody2D" parent="."]
+position = Vector2( -1000, -560 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sector Edge"]
+position = Vector2( 3.05176e-05, -3.05176e-05 )
+rotation = -0.785398
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="Sector Edge"]
+margin_left = -377.0
+margin_top = 359.0
+margin_right = 668.0
+margin_bottom = 383.0
+rect_rotation = -45.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sector Edge2" type="StaticBody2D" parent="."]
+position = Vector2( 3000, -560 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sector Edge2"]
+rotation = 0.785398
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="Sector Edge2"]
+margin_left = -359.0
+margin_top = -376.0
+margin_right = 686.0
+margin_bottom = -352.0
+rect_rotation = 45.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sector Edge3" type="StaticBody2D" parent="."]
+position = Vector2( 960, -960 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sector Edge3"]
+position = Vector2( -2.52417, 0 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="Sector Edge3"]
+margin_left = -520.0
+margin_top = -14.0
+margin_right = 525.0
+margin_bottom = 10.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="area_entered" from="Gate North" to="Player" method="_on_Area2D_area_entered"]
+[connection signal="area_entered" from="Gate South" to="Player" method="_on_Area2D_area_entered"]
