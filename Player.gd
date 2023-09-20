@@ -1,6 +1,6 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-export var velocity = Vector2();
+#@export var speed
 var maxspeed = 600
 var drag = 0.0125
 var screenSize = Vector2.ZERO
@@ -13,27 +13,36 @@ func _physics_process(delta: float):
 	
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 20
-		$AnimatedSprite.flip_v = false
-		$AnimatedSprite.rotation = deg2rad(0)
+		$AnimatedSprite2D.animation = "engineOn"
+		$AnimatedSprite2D.flip_v = false
+		$AnimatedSprite2D.rotation = deg_to_rad(0)
 	if Input.is_action_pressed("move_down"):
 		velocity.y += 20
-		$AnimatedSprite.flip_v = true
-		$AnimatedSprite.rotation = deg2rad(0)
+		$AnimatedSprite2D.flip_v = true
+		$AnimatedSprite2D.rotation = deg_to_rad(0)
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 20
-		$AnimatedSprite.rotation = deg2rad(90)
-		$AnimatedSprite.flip_v = false
+		$AnimatedSprite2D.rotation = deg_to_rad(90)
+		$AnimatedSprite2D.flip_v = false
 	if Input.is_action_pressed("move_left"):
 		velocity.x -= 20
-		$AnimatedSprite.rotation = deg2rad(-90)
-		$AnimatedSprite.flip_v = false
+		$AnimatedSprite2D.rotation = deg_to_rad(-90)
+		$AnimatedSprite2D.flip_v = false
 	
-	velocity = velocity.clamped(maxspeed)
-	velocity = velocity.linear_interpolate(Vector2.ZERO, drag)
-	move_and_slide(velocity)
+	velocity = velocity.limit_length(maxspeed)
+	velocity = velocity.lerp(Vector2.ZERO, drag)
+	set_velocity(velocity)
+	move_and_slide()
 
-func _on_Area2D_area_entered(area):
-	print('gate entered')
+func _on_gate_north_body_entered(body):
+	print('north gate entered')
 	hide()
-	global_position = Vector2(area.position.x, area.position.y+100)
+	global_position = Vector2(body.position.x, body.position.y+1000)
+	show()
+
+
+func _on_gate_south_body_entered(body):
+	print('south gate entered')
+	hide()
+	global_position = Vector2(body.position.x, body.position.y-1000)
 	show()
