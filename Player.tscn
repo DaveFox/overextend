@@ -1,33 +1,33 @@
 [gd_scene load_steps=6 format=3 uid="uid://dsycl4cw7jfbr"]
 
 [ext_resource type="Texture2D" uid="uid://cnhck6oiqex84" path="res://ship-1.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://diai2r6f3sf17" path="res://ship-2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bphajta7ty48n" path="res://ship-2.png" id="2"]
 [ext_resource type="Script" path="res://Player.gd" id="3"]
 
-[sub_resource type="SpriteFrames" id="1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ic061"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1")
+"texture": ExtResource("2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2")
+"texture": ExtResource("1")
 }],
 "loop": true,
 "name": &"engineOn",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [sub_resource type="CircleShape2D" id="2"]
-radius = 36.0555
+radius = 41.0122
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("3")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("1")
+sprite_frames = SubResource("SpriteFrames_ic061")
 animation = &"engineOn"
-frame_progress = 0.749007
 
 [node name="Player Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(2, 8)

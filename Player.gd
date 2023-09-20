@@ -1,19 +1,19 @@
 extends CharacterBody2D
 
-#@export var speed
 var maxspeed = 600
 var drag = 0.0125
 var screenSize = Vector2.ZERO
 
 func _ready():
+	print('ready')
 	screenSize = get_viewport_rect().size
 	position = Vector2(get_viewport_rect().position.x + screenSize.x/2, get_viewport_rect().position.y + screenSize.y/2)
+	$AnimatedSprite2D.animation = "engineOn"
+	$AnimatedSprite2D.play()
 
-func _physics_process(delta: float):
-	
+func _physics_process(_delta: float):	
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 20
-		$AnimatedSprite2D.animation = "engineOn"
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.rotation = deg_to_rad(0)
 	if Input.is_action_pressed("move_down"):
