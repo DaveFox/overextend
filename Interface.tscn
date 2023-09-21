@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckksbx6hgvq6n"]
+
+[ext_resource type="Theme" uid="uid://bc76ci8nhc8v7" path="res://GameTheme.tres" id="1_pk33t"]
+[ext_resource type="Script" path="res://HUD.gd" id="2_cnlgq"]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("2_cnlgq")
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.5
+offset_top = 50.0
+offset_right = 82.5
+offset_bottom = 100.0
+grow_horizontal = 2
+theme = ExtResource("1_pk33t")
+theme_override_font_sizes/font_size = 32
+text = "OverExtend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -217.0
+offset_right = 20.0
+offset_bottom = -183.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pk33t")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Message Timer" type="Timer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -137.0
+offset_right = 119.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_pk33t")
+text = "Start"
+
+[node name="Setting Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_pk33t")
+text = "Settings
+"
+
+[node name="Quit Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_pk33t")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]

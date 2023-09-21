@@ -4,12 +4,18 @@ var maxspeed = 600
 var drag = 0.0125
 var screenSize = Vector2.ZERO
 
+func start(pos):
+	print('start')
+	position = pos
+	show()
+	$"Player Hitbox".disabled = false
+	$AnimatedSprite2D.animation = "engineOn"
+	$AnimatedSprite2D.play()
+
 func _ready():
 	print('ready')
 	screenSize = get_viewport_rect().size
 	position = Vector2(get_viewport_rect().position.x + screenSize.x/2, get_viewport_rect().position.y + screenSize.y/2)
-	$AnimatedSprite2D.animation = "engineOn"
-	$AnimatedSprite2D.play()
 
 func _physics_process(_delta: float):	
 	if Input.is_action_pressed("move_up"):
